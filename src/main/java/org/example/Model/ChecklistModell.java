@@ -6,6 +6,7 @@ import java.time.LocalDateTime; // Importa para manipular datas e horas
 
 // @Entity: Indica que esta classe será uma tabela no seu banco de dados
 // @Table: Define o nome da tabela no SQL como "tb_checklist"
+@Data
 @Entity
 @Table(name = "tb_checklist")
 
@@ -14,7 +15,7 @@ import java.time.LocalDateTime; // Importa para manipular datas e horas
 @Setter // Cria todos os métodos de escrita (setters)
 @NoArgsConstructor // Cria um construtor vazio (exigência do Hibernate)
 @AllArgsConstructor // Cria um construtor com todos os campos preenchidos
-public class ChecklistModel {
+public class ChecklistModell {
 
     // @Id: Define que este campo é a Chave Primária
     // @GeneratedValue: Define que o banco de dados gerará o ID automaticamente (auto-incremento)
@@ -25,18 +26,18 @@ public class ChecklistModel {
     // @Column: Define propriedades da coluna no banco
     // nullable = false: Impede que o registro seja salvo sem preencher este campo
     @Column(name = "placa_veiculo", nullable = false, length = 7)
-    private String placaVeiculo;
+    private String placaVeiculo; // Mudou de placa_veiculo para placaVeiculo
 
     // @Enumerated: Grava o nome do valor da Enum (ex: "ENTRADA") em vez de um número (0, 1)
+
+
     @Enumerated(EnumType.STRING)
+    private NivelCombustivel nivelCombustivel;
 
     @Column(name = "tipo_checklist", nullable = false, length = 20)
+    private String tipoChecklist;
 
-
-
-    Integer nivelCombustivel;
-
-    @Column(name = "quilometragem", nullable = false)
+    @Column(name = "quilometrage", nullable = false)
     private Long quilometragem;
 
     @Column(name = "tem_estepe", nullable = false)

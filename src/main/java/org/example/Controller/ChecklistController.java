@@ -1,62 +1,48 @@
 package org.example.Controller;
-import org.example.Model.ChecklistModel;
-import org.example.Service.ChecklistService;
+
+import org.example.Model.ChecklistModell;
+import org.example.Repository.RepositoryChecklist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/checklists") // Define a rota base para este controller
+@RequestMapping("/api/checklists")
 public class ChecklistController {
 
     @Autowired
-    private ChecklistService checklistService;
+    private RepositoryChecklist repository;
 
-    // 1. Criar um novo Checklist (POST)
     @PostMapping
-    public ResponseEntity<ChecklistModel> criarChecklist(@RequestBody ChecklistModel checklist) {
-        ChecklistModel novoChecklist = checklistService.salvar(checklist);
-        return new ResponseEntity<>(novoChecklist, HttpStatus.CREATED);
+    public ResponseEntity<ChecklistModell>
+    salvar(@RequestBody ChecklistModell checklist) {
+        return new ResponseEntity<>(repository.save(checklist), HttpStatus.CREATED);
     }
 
-    // 2. Listar todos os Checklists (GET)
     @GetMapping
-    public ResponseEntity<List<ChecklistModel>> listarTodos() {
-        List<ChecklistModel> checklists = checklistService.listarTodos();
-        return new ResponseEntity<>(checklists, HttpStatus.OK);
+    public ResponseEntity<List<ChecklistModell
+            >> listarTodos() {
+        return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 
-    // 3. Buscar um Checklist por ID (GET)
     @GetMapping("/{id}")
-    public ResponseEntity<ChecklistModel> buscarPorId(@PathVariable Long id) {
-        return checklistService.buscarPorId(id)
-                .map(checklist -> new ResponseEntity<>(checklist, HttpStatus.OK))
+    public ResponseEntity<ChecklistModell>
+    buscarPorId(@PathVariable Long id) {
+        Optional<ChecklistModell> checklist = repository.findById(id);
+        return checklist.map(c -> new ResponseEntity<>(c, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    // 4. Atualizar um Checklist por ID (PUT)
-    @PutMapping("/{id}")
-    public ResponseEntity<ChecklistModel> atualizar(@PathVariable Long id, @RequestBody ChecklistModel checklist) {
-        try {
-            ChecklistModel checklistAtualizado = checklistService.atualizar(id, checklist);
-            return new ResponseEntity<>(checklistAtualizado, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    // 5. Deletar um Checklist por ID (DELETE)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        try {
-            checklistService.deletar(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (RuntimeException e) {
+        if (!repository.existsById(id)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        repository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
-

@@ -1,6 +1,4 @@
-package org.example.Veiculos.Entity;
-
-import jakarta.persistence.*; // Importa as anotações do JPA para persistência no banco
+package org.example.Veiculos.Entity;import jakarta.persistence.*; // Importa as anotações do JPA para persistência no banco
 import lombok.*; // Importa as anotações do Lombok para reduzir código repetitivo
 import java.time.LocalDateTime; // Importa a classe para manipulação de data e hora
 
@@ -54,16 +52,5 @@ public class VeiculoModel {
         // Define o horário atual como o momento do registro, evitando entrada manual do usuário
         this.dataCadastro = LocalDateTime.now();
 
-
-
-        class ChecklistModel {
-            // ... outros campos ...
-
-            @ManyToOne(fetch = FetchType.LAZY)
-            @JoinColumn(name = "veiculo_id", nullable = false) // Esta é a coluna de ligação no banco
-            private VeiculoModel veiculo;
-
-            // O Lombok (pelo @Setter) criará o setVeiculo(VeiculoModel v) para você.
-        }
     }
 }
