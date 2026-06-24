@@ -1,0 +1,9 @@
+-- Migration: V1 - Estrutura inicial da tabela de veículos
+CREATE TABLE veiculos (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    marca VARCHAR(50) NOT NULL,
+    modelo VARCHAR(50) NOT NULL,
+    placa VARCHAR(10) NOT NULL UNIQUE,
+    ano INT NOT NULL,
+    disponivel BOOLEAN DEFAULT TRUE
+);
