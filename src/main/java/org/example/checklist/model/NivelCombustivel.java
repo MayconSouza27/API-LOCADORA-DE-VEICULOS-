@@ -1,4 +1,4 @@
-package org.example.Model;
+package org.example.checklist.model;
 
 public enum             NivelCombustivel {
 

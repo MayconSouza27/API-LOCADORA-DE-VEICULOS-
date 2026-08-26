@@ -1,7 +1,7 @@
-package org.example.Controller;
+package org.example.checklist.controller;
 
-import org.example.Model.ChecklistModell;
-import org.example.Repository.RepositoryChecklist;
+import org.example.checklist.model.ChecklistModell;
+import org.example.checklist.repository.RepositoryChecklist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

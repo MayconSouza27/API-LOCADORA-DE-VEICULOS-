@@ -1,7 +1,7 @@
-package org.example.Veiculos.Controller;
+package org.example.veiculos.controller;
 
-import org.example.Veiculos.Entity.VeiculoModel;
-import org.example.Veiculos.Service.VeiculoService;
+import org.example.veiculos.model.VeiculoModel;
+import org.example.veiculos.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +23,19 @@ public class ControllerVeiculo {
         return ResponseEntity.ok(veiculos);
     }
 
+
+    // CREATE - POST /veiculos
+
+
+
+
+    // CREATE - POST /veiculos
+    @PostMapping
+    public ResponseEntity<VeiculoModel> criar(@RequestBody VeiculoModel veiculo) {
+        VeiculoModel veiculoSalvo = veiculoService.salvar(veiculo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(veiculoSalvo); // <--- Mude 'novo' para 'veiculoSalvo'
+    }
+ 
     // READ ONE - GET /veiculos/{id}
     @GetMapping("/{id}")
     public ResponseEntity<VeiculoModel> buscarPorId(@PathVariable Long id) {
@@ -31,12 +44,7 @@ public class ControllerVeiculo {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // CREATE - POST /veiculos
-    @PostMapping
-    public ResponseEntity<VeiculoModel> criar(@RequestBody VeiculoModel veiculo) {
-        VeiculoModel novo = veiculoService.salvar(veiculo);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novo);
-    }
+
 
     // UPDATE - PUT /veiculos/{id}
     @PutMapping("/{id}")

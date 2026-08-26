@@ -1,6 +1,6 @@
-package org.example.Repository;
+package org.example.checklist.repository;
 
-import org.example.Model.ChecklistModell;
+import org.example.checklist.model.ChecklistModell;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,5 +1,13 @@
-package org.example.Veiculos.Entity;import jakarta.persistence.*; // Importa as anotações do JPA para persistência no banco
+
+
+package org.example.veiculos.model;
+import java.util.List;
+import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*; // Importa as anotações do JPA para persistência no banco
 import lombok.*; // Importa as anotações do Lombok para reduzir código repetitivo
+import org.example.checklist.model.ChecklistModell;
+
 import java.time.LocalDateTime; // Importa a classe para manipulação de data e hora
 
 // Anotações do Lombok que geram métodos automaticamente em tempo de compilação
@@ -46,11 +54,19 @@ public class VeiculoModel {
     @Column(name = "data_cadastro", nullable = false)
     private LocalDateTime dataCadastro;
 
+    @OneToMany(mappedBy = "veiculo")
+    @JsonIgnore
+
+    private List<ChecklistModell> checklists;
+
+
+
     // Método que é disparado automaticamente pelo JPA antes do objeto ser salvo no banco
     @PrePersist
     protected void onCreate() {
         // Define o horário atual como o momento do registro, evitando entrada manual do usuário
         this.dataCadastro = LocalDateTime.now();
+
 
     }
 }

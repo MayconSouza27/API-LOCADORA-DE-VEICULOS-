@@ -1,6 +1,6 @@
-package org.example.Veiculos.Repository;
+package org.example.veiculos.repository;
 
-import org.example.Veiculos.Entity.VeiculoModel;
+import org.example.veiculos.model.VeiculoModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

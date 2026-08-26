@@ -1,8 +1,11 @@
-package org.example.Model;
+package org.example.checklist.model;
 
 import jakarta.persistence.*; // Importa as anotações do JPA para mapeamento de banco de dados
 import lombok.*; // Importa o Lombok para reduzir código repetitivo (Boilerplate)
+import org.example.veiculos.model.VeiculoModel;
+
 import java.time.LocalDateTime; // Importa para manipular datas e horas
+import jakarta.persistence.Column;
 
 // @Entity: Indica que esta classe será uma tabela no seu banco de dados
 // @Table: Define o nome da tabela no SQL como "tb_checklist"
@@ -23,6 +26,7 @@ public class ChecklistModell {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     // @Column: Define propriedades da coluna no banco
     // nullable = false: Impede que o registro seja salvo sem preencher este campo
     @Column(name = "placa_veiculo", nullable = false, length = 7)
@@ -37,8 +41,9 @@ public class ChecklistModell {
     @Column(name = "tipo_checklist", nullable = false, length = 20)
     private String tipoChecklist;
 
-    @Column(name = "quilometrage", nullable = false)
+    @Column(name = "quilometragem", nullable = false)
     private Long quilometragem;
+
 
     @Column(name = "tem_estepe", nullable = false)
     private Boolean temEstepe;
@@ -65,4 +70,12 @@ public class ChecklistModell {
     protected void onCreate() {
         this.dataRegistro = LocalDateTime.now(); // Captura o momento exato do registro
     }
+// Dentro de ChecklistModel.java
+
+    @ManyToOne
+    @JoinColumn(name = "veiculo_id", nullable = false)
+    private VeiculoModel veiculo;
+
+
+    
 }
