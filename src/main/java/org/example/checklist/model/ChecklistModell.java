@@ -2,7 +2,7 @@ package org.example.checklist.model;
 
 import jakarta.persistence.*; // Importa as anotações do JPA para mapeamento de banco de dados
 import lombok.*; // Importa o Lombok para reduzir código repetitivo (Boilerplate)
-import org.example.veiculos.model.VeiculoModel;
+import org.example.veiculo.model.VeiculoModel;
 
 import java.time.LocalDateTime; // Importa para manipular datas e horas
 import jakarta.persistence.Column;

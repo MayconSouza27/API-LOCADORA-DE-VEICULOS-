@@ -1,6 +1,6 @@
 
 
-package org.example.veiculos.model;
+package org.example.veiculo.model;
 import java.util.List;
 import jakarta.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;

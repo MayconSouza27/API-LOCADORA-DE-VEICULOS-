@@ -1,7 +1,7 @@
-package org.example.veiculos.controller;
+package org.example.veiculo.controller;
 
-import org.example.veiculos.model.VeiculoModel;
-import org.example.veiculos.service.VeiculoService;
+import org.example.veiculo.model.VeiculoModel;
+import org.example.veiculo.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
