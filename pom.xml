@@ -19,56 +19,78 @@
     </properties>
 
     <dependencies>
+        <!-- SUPORTE A API REST / MVC (Controllers, Endpoints, JSON Jackson) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- SUPORTE A CLIENTE E PROGRAMACAO REATIVA / WEBCLIENT -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
+        <!-- VALIDACAO DE PAYLOADS E CAMPOS (@NotNull, @NotBlank, @Size) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+
+        <!-- BANCO DE DADOS E ORM (Spring Data JPA / Hibernate) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!-- BANCO DE DADOS EM MEMORIA H2 PARA DESENVOLVIMENTO E TESTES -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
 
+        <!-- LOMBOK PARA REDUZIR CODIGO BOILERPLATE (Getters, Setters, Constructors) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
+        <!-- MIGRACAO E CONTROLE DE VERSAO DO SCHEMA DO BANCO DE DADOS -->
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
+
+        <!-- SPRING SECURITY (Comentado temporariamente para liberar o acesso total aos testes no Postman) -->
+        <!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+        -->
 
+        <!-- TESTES INTEGRADOS DO SPRING SECURITY (Comentado enquanto a segurança estiver desativada) -->
+        <!--
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        -->
 
+        <!-- SWAGGER / OPENAPI DOCUMENTACAO AUTOMATICA DA API -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.5.0</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- PLUGIN DE COMPILACAO E EXECUCAO DO SPRING BOOT -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

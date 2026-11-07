@@ -11,6 +11,6 @@ CREATE TABLE tb_checklist (
                               observacoes_avarias TEXT,
                               data_registro TIMESTAMP,
                               placa_veiculo VARCHAR(20),
-                              veiculo_id BIGINT NOT NULL,
-                              CONSTRAINT fk_checklist_veiculo FOREIGN KEY (veiculo_id) REFERENCES tb_veiculos(id)
+                              veiculo_id BIGINT NOT NULL
+                                  CONSTRAINT fk_checklist_veiculo_id FOREIGN KEY (veiculo_id) REFERENCES tb_veiculos(id)
 );
